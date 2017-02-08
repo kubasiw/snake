@@ -1,17 +1,43 @@
-var gulp = require('gulp'); // deklarujemy zmienna ktora powie ze bedziemy korzystac z paczki gulp ktora zainstalowalismy.
-var sass = require('gulp-sass'); // -------------------------""----------------------------- sass gulp
+var gulp = require('gulp');
+var sass = require('gulp-sass');
 
-// var sassOptions = {};
+//var sftp = require('gulp-sftp');
+var browserSync = require('browser-sync').create();
+var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('sass', function() { // tworzymy taska sass
-  return gulp // zwraca funkcje
-  .src('sass/**/*.scss') // podajemy zrodlo z ktorego wrzucamy do rury plik scss, kazemu mu przeszikac w nim wszysko
-  .pipe(sass({outputStyle:''}).on('error', sass.logError)) // sass powoduje uruchomienia maszyny kompilujacej a nastepne mozemy ustawic parametr np. expanded jesli kompilator natrafi na blad wywali nam blad
-  .pipe(gulp.dest('css/')) // podajemy katalog do ktorego ma wyleciec z rury przetworzony plik css
 
+
+// static server 
+//Static Server + watching scss/ html file
+gulp.task('serve', ['rwd'], function() {
+   
+    browserSync.init({
+        server: "./"
+    });
+     
+   gulp.watch("./sass/**/*.scss", ['rwd']);
+    
+   //Deploy na ftp
+//   gulp.watch("./css/*", ['deployCss']);
+//   gulp.watch("./*.php", ['deployMain']);
+  
+    gulp.watch("./*.css").on('change', browserSync.reload);
+     gulp.watch("./*.html").on('change', browserSync.reload);
 });
 
-gulp.task('watch', ['sass'], function (){ // tworzymy task wach ktory obserwuje czy zachodza zmiany w pliku style.scss a jesli tak to ...
-  gulp.watch('sass/**/*.scss', ['sass']); // ma automatycznie zmienic style.css
 
+
+
+gulp.task('rwd', function() { // funkcja callback
+    return gulp.src('./sass/**/*.scss') //-->zrodlo
+        .pipe(sourcemaps.init())
+        .pipe(sass({errLogToConsole:true}))
+        .pipe(sourcemaps.write())        
+        .pipe(gulp.dest('css')) // --> gdzie laduja
+        .pipe(browserSync.stream())
 })
+
+
+
+
+gulp.task('default', ['serve']);
