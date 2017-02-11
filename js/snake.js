@@ -66,6 +66,37 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return false;
     }
     
+    // main function
+    
+    var paint = function() {
+        // we draw the space for snake to move
+        ctx.fillStyle = 'lightgrey';
+        ctx.fillRect(0, 0, w, h);
+        
+        // we set up a border
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(0, 0, w, h);
+        
+        // start is disabled during the game
+        btn.setAttribute('disabled', true);
+        
+        var snakeX = snake[0].x;
+        var snakeY = snake[0].y;
+        
+        /* We'd like make snake move so we use a var 'direction' to controll the move.
+        To move a snake, we pop out the last element of array and shift it on the top as first element.*/
+        for (var i = 0;  i < snake.length; i++) {
+            bodySnake(snake[i].x, snake[i].y);
+        }
+        
+        // we creating food using pizza function.
+        pizza(food.x, food.y);
+        
+        // we putting the score text.
+        scoreText();
+    
+    }
+    
     
     
     
