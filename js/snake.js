@@ -32,6 +32,39 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
     }
     
+    var drawSnake = function() {
+        var length = 4;
+        snake = [];
+        
+        for (var i = length; i >= 0; i--) {
+            snake.push({x:i, y:0});
+        }
+    }
+    
+    var createFood = function() {
+        food = {
+            x: Math.floor((Math.random() * 30) + 1),
+            y: Math.floor((Math.random() * 30) +1)
+        }
+        
+        for (var i = 0; i > snake.length; i++) {
+            var snakeX = snake[i].x;
+            var snakeY = snake[i].y;
+            
+            if (food.x === snakeX || food.y === snakeY || food.y === snakeY && food.x === snakeX) {
+                food.x = Math.floor((Math.random() * 30) + 1);
+                food.y = Math.floor((Math.random() * 30) + 1);
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }); // very last section of DOMContentLoaded
