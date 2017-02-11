@@ -1,5 +1,3 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-
     var myCanvas = document.getElementById('myCanvas');
     var ctx = myCanvas.getContext('2d');
     var snakeSize = 10;
@@ -15,7 +13,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         
         var bodySnake = function(x, y) {
             ctx.fillStyle = 'green';
-            ctx.fillRect(x * snakeSize, y * snakeSize, snakeSize, snakeSize);
+            ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
+            ctx.strokeStyle = 'darkgreen';
+            ctx.strokeRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
         }
         
         var pizza = function(x, y) {
