@@ -12,9 +12,9 @@
     var drawModule = (function () {
         
         var bodySnake = function(x, y) {
-            ctx.fillStyle = 'green';
+            ctx.fillStyle = 'brown';
             ctx.fillRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
-            ctx.strokeStyle = 'darkgreen';
+            ctx.strokeStyle = 'black';
             ctx.strokeRect(x*snakeSize, y*snakeSize, snakeSize, snakeSize);
         }
         
@@ -27,7 +27,7 @@
         
         var scoreText = function() {
             var scoreText = 'Score: ' + score;
-            ctx.filltyle = 'blue';
+            ctx.fillStyletyle = 'blue';
             ctx.fillText(scoreText, 145, h-5);
         }
     
@@ -69,7 +69,7 @@
     
         var paint = function() {
             // we draw the space for snake to move
-            ctx.fillStyle = 'lightgrey';
+            ctx.fillStyle = 'green';
             ctx.fillRect(0, 0, w, h);
 
             // we set up a border
