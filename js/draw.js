@@ -1,11 +1,11 @@
     var myCanvas = document.getElementById('myCanvas');
     var ctx = myCanvas.getContext('2d');
-    var snakeSize = 10;
-    var w = 350;
-    var h = 350;
+    var snakeSize = 14;
+    var w = 490;
+    var h = 490;
     var score = 0;
     var snake;
-    var snakeSize = 10;
+    var snakeSize = 14;
     var food;
     
     
@@ -26,9 +26,9 @@
         }
         
         var scoreText = function() {
-            var score_Text = 'Score: ' + score;
+            var scoreText = 'Score: ' + score;
             ctx.filltyle = 'blue';
-            ctx.fillText(score_text, 145, h-5);
+            ctx.fillText(scoreText, 145, h-5);
         }
     
         var drawSnake = function() {
@@ -107,7 +107,7 @@
             then the game will be stopped again. 
             */
 
-            if (snakeX == -1 || snakeX == w / snakeSize || snakeY == -1 || snakeY == h / snakeSize || check_collision(snakeX, snakeY, snake)) {
+            if (snakeX == -1 || snakeX == w / snakeSize || snakeY == -1 || snakeY == h / snakeSize || checkCollision(snakeX, snakeY, snake)) {
 
                 //Stop the game.
 
@@ -164,7 +164,7 @@
             direction = 'down';
             drawSnake();
             createFood();
-            gameloop = setInterval(paint, 80);
+            gameloop = setInterval(paint, 120);
         }
 
         //We need to return only the _init_ function at the end of the Module.
@@ -174,6 +174,3 @@
 
         //close the module
     }());
-    
-   
-}); // very last section of DOMContentLoaded
